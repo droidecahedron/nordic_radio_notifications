@@ -23,6 +23,7 @@ static void radio_noti_work_fn(struct k_work *work)
 //! Radio notification callback
 static void radio_notify_cb(const void *context)
 {
+	/*note: Not using devicetree to make sure this irq is as fast as possible!*/
 	nrf_gpio_pin_toggle(TEST_PIN);
 }
 
