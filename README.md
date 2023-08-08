@@ -2,7 +2,7 @@
 `nRF52840DK`
 
 # Background
-[Very good blog on the MSPL timeslot interface by Daniel V](https://devzone.nordicsemi.com/guides/nrf-connect-sdk-guides/b/software/posts/updating-to-the-mpsl-timeslot-interface)) that led to a lot of this knowledge.
+[Very good blog on the MSPL timeslot interface by Daniel V](https://devzone.nordicsemi.com/guides/nrf-connect-sdk-guides/b/software/posts/updating-to-the-mpsl-timeslot-interface) that led to a lot of this knowledge.
 Let's say we want to "estimate" how long connection events and intervals are between two devices.
 
 Sometimes simply toggling a pin when a notification begins and ends doesn't give us the clear picture on what's actually happening on the radio level. 
