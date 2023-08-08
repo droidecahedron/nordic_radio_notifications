@@ -12,6 +12,8 @@ Thus, we can use [Radio Notifications](https://developer.nordicsemi.com/nRF_Conn
 
 In this case, the QDEC IRQn is hijacked as it's not being used. Some peripherals share IRQs! ([Link](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fmemory.html&cp=5_0_0_3_1_3&anchor=topic))
 
+# Screenshot
+(Example of code addition running on a 2 peripheral notifying the central configuration)
+
 ![image](https://github.com/droidecahedron/nordic_radio_notifications/assets/63935881/2d3e0c12-3825-4ee4-b533-c66db071ca58)
-(Example of code running on each peripheral)
 
