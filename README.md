@@ -13,9 +13,12 @@ Thus, we can use [Radio Notifications](https://developer.nordicsemi.com/nRF_Conn
 In this case, the QDEC IRQn is hijacked as it's not being used. Some peripherals share IRQs! ([Link](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fmemory.html&cp=5_0_0_3_1_3&anchor=topic))
 
 # Screenshot
-(Example of code addition running on a 2 peripheral notifying the central configuration)
+(Example of code addition running on a 2 peripheral notifying the central configuration, central is missing connection events!)
 
 ![image](https://github.com/droidecahedron/nordic_radio_notifications/assets/63935881/2d3e0c12-3825-4ee4-b533-c66db071ca58)
+
+(Example of no missed connection events!)
+![image](https://github.com/droidecahedron/nordic_radio_notifications/assets/63935881/138e0348-4f9f-4b9b-9a08-a82c481f6caf)
 
 ## Notes
 you could use `k_sched_lock()` and `k_sched_unlock()` within main before bluetooth init and it would work, but it is better to use a work queue, especially the system one.
