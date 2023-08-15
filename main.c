@@ -30,18 +30,18 @@ static void radio_notify_cb(const void *context)
 
 void main(void)
 {
-  IRQ_CONNECT(DT_IRQN(DT_NODELABEL(RADIO_NOTI_IRQN_NODELABEL)), RADIO_NOTI_IRQ_PRIO,
-                radio_notify_cb, NULL, 0);
-    irq_enable(DT_IRQN(DT_NODELABEL(RADIO_NOTI_IRQN_NODELABEL)));
-
+	IRQ_CONNECT(DT_IRQN(DT_NODELABEL(RADIO_NOTI_IRQN_NODELABEL)), RADIO_NOTI_IRQ_PRIO,
+	                radio_notify_cb, NULL, 0);
+	irq_enable(DT_IRQN(DT_NODELABEL(RADIO_NOTI_IRQN_NODELABEL)));
+	
 	k_work_init(&radio_noti_work, radio_noti_work_fn);
 	k_work_submit(&radio_noti_work);
-		
+	
 	//init the pin
 	nrf_gpio_cfg_output(TEST_PIN);
 	nrf_gpio_pin_clear(TEST_PIN); // start clear
 
-  /*
-   The rest of your code, particularly bluetooth inits. You want to do above before bluetooth inits.
-    */
+	/*
+	   The rest of your code, particularly bluetooth inits. You want to do above before bluetooth inits.
+	*/
 }
