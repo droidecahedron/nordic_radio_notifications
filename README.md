@@ -21,4 +21,4 @@ In this case, the QDEC IRQn is hijacked as it's not being used. Some peripherals
 ![image](https://github.com/droidecahedron/nordic_radio_notifications/assets/63935881/138e0348-4f9f-4b9b-9a08-a82c481f6caf)
 
 ## Notes
-you could use `k_sched_lock()` and `k_sched_unlock()` within main before bluetooth init and it would work, but it is better to use a work queue, especially the system one.
+you could use `k_sched_lock()` and `k_sched_unlock()` within main before bluetooth init and it would work, but it is better to use system work queue. The calls have to be from cooperative thread.
