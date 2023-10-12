@@ -1,5 +1,5 @@
 # Hardware
-`nRF52840DK`
+`nRF52840`
 
 # Background
 [Very good blog on the MSPL timeslot interface by Daniel V](https://devzone.nordicsemi.com/guides/nrf-connect-sdk-guides/b/software/posts/updating-to-the-mpsl-timeslot-interface) that led to a lot of this knowledge.
@@ -11,6 +11,8 @@ The reason for this is because for instance if you toggle the pin on before send
 Thus, we can use [Radio Notifications](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/doc/radio_notification.html) to toggle a pin in a lightweight IRQ on either edge. This lets us paint a clearer picture of when the notification actually started and stop described above.
 
 In this case, the QDEC IRQn is hijacked as it's not being used. Some peripherals share IRQs! ([Link](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fmemory.html&cp=5_0_0_3_1_3&anchor=topic))
+
+As you test and observe the radio activity, you can take some actions to optimize your connection for throughput/rate/etc.
 
 # Screenshot
 (Example of code addition running on 3 peripherals notifying the central configuration)
