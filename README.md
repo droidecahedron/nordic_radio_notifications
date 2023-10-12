@@ -29,3 +29,76 @@ In this case, the QDEC IRQn is hijacked as it's not being used. Some peripherals
 
 ## Notes
 you could use `k_sched_lock()` and `k_sched_unlock()` within main before bluetooth init and it would work, but it is better to use system work queue. The calls have to be from cooperative thread.
+
+## Optimizing connection
+### [Good blog on this](https://devzone.nordicsemi.com/guides/nrf-connect-sdk-guides/b/software/posts/building-a-bluetooth-application-on-nrf-connect-sdk-part-3-optimizing-the-connection)
+
+_For instance, modifying event length fxn and connection interval from [sample](https://github.com/nrfconnect/sdk-nrf/blob/main/samples/bluetooth/llpm)_
+```c
+//peripheral
+static int set_short_event_length(uint32_t event_len_us)
+{
+	int err;
+	struct net_buf *buf;
+
+	sdc_hci_cmd_vs_event_length_set_t *cmd_event_len_set;
+
+	buf = bt_hci_cmd_create(SDC_HCI_OPCODE_CMD_VS_EVENT_LENGTH_SET, sizeof(*cmd_event_len_set));
+	if (!buf)
+	{
+		printk("Could not allocate command buffer\n");
+		return -ENOMEM;
+	}
+
+	cmd_event_len_set = net_buf_add(buf, sizeof(*cmd_event_len_set));
+	cmd_event_len_set->event_length_us = event_len_us;
+
+	err = bt_hci_cmd_send_sync(SDC_HCI_OPCODE_CMD_VS_EVENT_LENGTH_SET, buf, NULL);
+	if (err)
+	{
+		printk("Set event length failed (err %d)\n", err);
+		return err;
+	}
+
+	printk("event length configured\n");
+	return 0;
+}
+
+//central
+static int vs_change_connection_interval(uint16_t interval_us)
+{
+	int err;
+	struct net_buf *buf;
+
+	sdc_hci_cmd_vs_conn_update_t *cmd_conn_update;
+
+	buf = bt_hci_cmd_create(SDC_HCI_OPCODE_CMD_VS_CONN_UPDATE,
+				sizeof(*cmd_conn_update));
+	if (!buf) {
+		printk("Could not allocate command buffer\n");
+		return -ENOMEM;
+	}
+
+	uint16_t conn_handle;
+
+	err = bt_hci_get_conn_handle(default_conn, &conn_handle);
+	if (err) {
+		printk("Failed obtaining conn_handle (err %d)\n", err);
+		return err;
+	}
+
+	cmd_conn_update = net_buf_add(buf, sizeof(*cmd_conn_update));
+	cmd_conn_update->conn_handle         = conn_handle;
+	cmd_conn_update->conn_interval_us    = interval_us;
+	cmd_conn_update->conn_latency        = 0;
+	cmd_conn_update->supervision_timeout = 300;
+
+	err = bt_hci_cmd_send_sync(SDC_HCI_OPCODE_CMD_VS_CONN_UPDATE, buf, NULL);
+	if (err) {
+		printk("Update connection parameters failed (err %d)\n", err);
+		return err;
+	}
+
+	return 0;
+}
+```
