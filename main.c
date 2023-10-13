@@ -1,4 +1,10 @@
-/*Note: This isn't a full main.c, just the additions you need to add it to your code.*/
+/**
+ * Author:    Johnny Nguyen
+ * Created:   11.05.2009
+ * 
+ * Note: This isn't a full main.c, just the additions you need to add it to your code.
+ **/
+
 #include <mpsl_radio_notification.h>
 
 //! hijacking qdec irqn. note some peripherals share irqs. (https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fmemory.html&cp=5_0_0_3_1_3&anchor=topic)
