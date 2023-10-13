@@ -1,6 +1,5 @@
 /**
  * Author:    Johnny Nguyen
- * Created:   11.05.2009
  * 
  * Note: This isn't a full main.c, just the additions you need to add it to your code.
  **/
