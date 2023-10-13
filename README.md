@@ -111,4 +111,4 @@ This repo utilizes the following:
 https://github.com/droidecahedron/nordic_radio_notifications/blob/c5c0810ce86d65d57fd5918db04d743780155ad9/main.c#L33-L34
 
 If at some point you need to use IRQ_DIRECT_CONNECT, be advised of the following:
-> IRQ_DIRECT_CONNECT will not allow the scheduler to run, it effectively bypasses the kernels ability run its scheduling point that might otherwise happen after an ISR returns.
+> `IRQ_DIRECT_CONNECT` will not allow the scheduler to run, it effectively bypasses the kernels ability run its scheduling point that might otherwise happen after an ISR returns.
