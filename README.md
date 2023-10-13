@@ -29,8 +29,9 @@ As you test and observe the radio activity, you can take some actions to optimiz
 
 
 
-## Notes
-you could use `k_sched_lock()` and `k_sched_unlock()` within main before bluetooth init and it would work, but it is better to use system work queue. The calls have to be from cooperative thread.
+# Notes
+
+- you could use `k_sched_lock()` and `k_sched_unlock()` within main before bluetooth init and it would work, but it is better to use system work queue. The calls have to be from cooperative thread.
 
 ## Optimizing connection
 ### [Good blog on this](https://devzone.nordicsemi.com/guides/nrf-connect-sdk-guides/b/software/posts/building-a-bluetooth-application-on-nrf-connect-sdk-part-3-optimizing-the-connection)
@@ -104,3 +105,10 @@ static int vs_change_connection_interval(uint16_t interval_us)
 	return 0;
 }
 ```
+
+## IRQ Connect
+This repo utilizes the following:
+https://github.com/droidecahedron/nordic_radio_notifications/blob/c5c0810ce86d65d57fd5918db04d743780155ad9/main.c#L33
+
+If at some point you need to use IRQ_DIRECT_CONNECT, be advised of the following:
+> IRQ_DIRECT_CONNECT will not allow the scheduler to run, it effectively bypasses the kernels ability run its scheduling point that might otherwise happen after an ISR returns.
