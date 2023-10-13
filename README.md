@@ -14,6 +14,9 @@ In this case, the QDEC IRQn is hijacked as it's not being used. Some peripherals
 
 As you test and observe the radio activity, you can take some actions to optimize your connection for throughput/rate/etc.
 
+Or maybe you want an interrupt to trigger when the radio is going to turn on. or off. From [MPSL doc page](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/README.html) : 
+> Radio notifications. It provides a configurable interrupt, usable before and/or after radio activity.
+
 # Screenshot
 (Example of code addition running on 3 peripherals notifying the central configuration)
 
