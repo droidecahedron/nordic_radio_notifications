@@ -39,7 +39,7 @@ As you test and observe the radio activity, you can take some actions to optimiz
 _For instance, modifying event length fxn and connection interval from [sample](https://github.com/nrfconnect/sdk-nrf/blob/main/samples/bluetooth/llpm)_
 ```c
 //peripheral
-static int set_short_event_length(uint32_t event_len_us)
+static int set_custom_event_length(uint32_t event_len_us)
 {
 	int err;
 	struct net_buf *buf;
@@ -112,3 +112,36 @@ https://github.com/droidecahedron/nordic_radio_notifications/blob/c5c0810ce86d65
 
 If at some point you need to use `IRQ_DIRECT_CONNECT`, be advised of the following:
 > `IRQ_DIRECT_CONNECT` will not allow the scheduler to run, it effectively bypasses the kernels ability run its scheduling point that might otherwise happen after an ISR returns.
+
+## From the [Radio Notification doc page](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/doc/radio_notification.html)
+t_distance is important to note, as well as whether we want notifications for active and nactive. You can repurpose the mpsl api call to suit your requirements.
+https://github.com/droidecahedron/nordic_radio_notifications/blob/f9417fa625dc21417dca27c9c04f39e969c3cf0e/main.c#L23-L25
+
+The list of what is available is in `<ncs ver>/nrfxlib/mpsl/include/mpsl_radio_notification.h`
+```c
+/** @brief Guaranteed time for application to process radio inactive notification. */
+#define MPSL_RADIO_NOTIFICATION_INACTIVE_GUARANTEED_TIME_US  (62)
+
+/** @brief Radio notification distances. */
+enum MPSL_RADIO_NOTIFICATION_DISTANCES
+{
+  MPSL_RADIO_NOTIFICATION_DISTANCE_NONE = 0, /**< The event does not have a notification. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_200US,    /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_420US,    /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_800US,    /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_1740US,   /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_2680US,   /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_3620US,   /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_4560US,   /**< The distance from the active notification to start of radio activity. */
+  MPSL_RADIO_NOTIFICATION_DISTANCE_5500US    /**< The distance from the active notification to start of radio activity. */
+};
+
+/** @brief Radio notification types. */
+enum MPSL_RADIO_NOTIFICATION_TYPES
+{
+    MPSL_RADIO_NOTIFICATION_TYPE_NONE = 0,        /**< The event does not have a radio notification signal. */
+    MPSL_RADIO_NOTIFICATION_TYPE_INT_ON_ACTIVE,   /**< Using interrupt for notification when the radio will be enabled. */
+    MPSL_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, /**< Using interrupt for notification when the radio has been disabled. */
+    MPSL_RADIO_NOTIFICATION_TYPE_INT_ON_BOTH,     /**< Using interrupt for notification both when the radio will be enabled and disabled. */
+};
+```
