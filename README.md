@@ -2,7 +2,7 @@
 `nRF52840`
 
 # Software
-`SDK
+`SDK <v2.5.0`
 
 # Background
 
