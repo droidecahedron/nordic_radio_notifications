@@ -1,9 +1,14 @@
 # Hardware
 `nRF52840`
 
+# Software
+`SDK
+
 # Background
 
 ## **[RADIO NOTIFICATION API REMOVED IN MPSL IN LATEST](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/CHANGELOG.html#changes)**
+> TODO: move current repo to folder for old API, and add folder for new API
+
 
 [Very good blog on the MSPL timeslot interface by Daniel V](https://devzone.nordicsemi.com/guides/nrf-connect-sdk-guides/b/software/posts/updating-to-the-mpsl-timeslot-interface) that led to a lot of this knowledge.
 Let's say we want to "estimate" how long connection events and intervals are between two devices.
