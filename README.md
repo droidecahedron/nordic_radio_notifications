@@ -79,7 +79,7 @@ static int set_custom_event_length(uint32_t event_len_us)
 }
 
 //central
-static int vs_change_connection_interval(uint16_t interval_us)
+static int change_connection_interval(uint16_t interval_us)
 {
 	int err;
 	struct net_buf *buf;
