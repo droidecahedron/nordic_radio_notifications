@@ -4,7 +4,7 @@
 # Software
 `SDK <v2.5.0`
 
-## **[RADIO NOTIFICATION API REMOVED IN MPSL IN LATEST](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/CHANGELOG.html#changes)**
+## **[RADIO NOTIFICATION API REMOVED IN MPSL AFTER 2.5.x](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/CHANGELOG.html#changes)**
 > If you are on 2.6 and onward, you can use this: https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/samples/bluetooth/connection_event_trigger/README.html
 
 # Background
